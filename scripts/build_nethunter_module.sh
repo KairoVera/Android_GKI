@@ -36,6 +36,16 @@ for FW_DIR in "$MODULE_DIR/system/etc/firmware" "$MODULE_DIR/system/vendor/firmw
     cp -r "$FW_STAGING/rtl_bt/"* "$FW_DIR/rtl_bt/" 2>/dev/null || true
     cp -r "$FW_STAGING/brcm/"* "$FW_DIR/brcm/" 2>/dev/null || true
     cp -r "$FW_STAGING/mediatek/"* "$FW_DIR/mediatek/" 2>/dev/null || true
+    
+# 3. Pull Out-Of-Tree Modules and Missing Firmware from shoey63/oot-modules    
+    echo "  -> Fetching OOT Modules and Firmware..."
+    git clone --depth 1 https://github.com/shoey63/oot-modules.git /tmp/oot-modules
+
+    # Inject the 8812au driver into the module directory
+    cp /tmp/oot-modules/modules/*.ko "$MODDIR/" 2>/dev/null || true
+    
+    # Inject the missing Realtek/MediaTek subdirectories into the system overlay
+    cp -r /tmp/oot-modules/firmware/* "$MODULE_DIR/system/etc/firmware/" 2>/dev/null || true
 done
 
 # Cleanup
