@@ -1,3 +1,8 @@
+#8e20d7f878c4f21abbbf4ce0328084eeb17a67db
+#Feat: Add Bluetooth dongles and legacy Ralink/Realtek Wi-Fi
+#03fbfaa6d39c865f811030b71c1cc5dfda37f2de
+#Test: Force System V IPC into GKI
+
 # ==========================================
 # 0. CORE WIRELESS STACK
 # ==========================================
